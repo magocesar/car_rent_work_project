@@ -1,6 +1,5 @@
 
 
-
 def projectdetails():
     from time import sleep
     participants = ('Bernardo Lima Hack',
@@ -298,22 +297,22 @@ def erase():
         else:
             erasecar()
     elif q == 2:
-        if not carsbd:
-            print('Nenhum Carro Foi Cadastrado.')
+        if not clientsbd:
+            print('Nenhum Cliente Foi Cadastrado.')
             print('-=-' * 10)
             sleep(1)
         else:
             eraseclient()
     elif q == 3:
-        if not carsbd:
-            print('Nenhum Carro Foi Cadastrado.')
+        if not addressbd:
+            print('Nenhum Endereço Foi Cadastrado.')
             print('-=-' * 10)
             sleep(1)
         else:
             eraseaddress()
     elif q == 4:
-        if not carsbd:
-            print('Nenhum Carro Foi Cadastrado.')
+        if not rentbd:
+            print('Nenhum Aluguel Foi Cadastrado.')
             print('-=-' * 10)
             sleep(1)
         else:
@@ -383,6 +382,8 @@ def eraseaddress():
             find = True
             addressbd.pop(counter)
             print('Endereço do Cliente Deletado do Banco de Dados.')
+            print('-=-' * 10)
+            sleep(1)
     if not find:
         print('Endereço não Encontrado no Banco de Dadosd.')
         print('-=-' * 10)
@@ -404,6 +405,8 @@ def eraserent():
             find = True
             rentbd.pop(counter)
             print('Aluguel do Cliente Deletado do Banco de Dados.')
+            print('-=-' * 10)
+            sleep(1)
     if not find:
         print('Aluguel não Encontrado no Banco de Dados.')
         print('-=-' * 10)
