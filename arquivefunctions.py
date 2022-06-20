@@ -89,8 +89,40 @@ def importrentbd():
     else:
         return []
 
+def ending_program():
+    import pickle
+    from main import clientsbd, carsbd, addressbd, rentbd
+    a = open("addressbd.txt","w")
+    a.close()
+    b = open("carsbd.txt","w")
+    b.close()
+    c = open("clientsbd.txt","w")
+    c.close()
+    d = open("rentbd.txt","w")
+    d.close()
+    
+    #   save clientbd
+    archive = open('clientsbd.txt', 'wb')
+    pickle.dump(clientsbd, archive)
+    archive.close()
 
+    #   save carsbd
 
+    archive = open('carsbd.txt', 'wb')
+    pickle.dump(carsbd, archive)
+    archive.close()
+
+    # save address
+
+    archive = open('addressbd.txt', 'wb')
+    pickle.dump(addressbd, archive)
+    archive.close()
+
+    #save rent
+
+    archive = open('rentbd.txt', 'wb')
+    pickle.dump(rentbd, archive)
+    archive.close()
 
 if __name__ == '__main__':
     pass

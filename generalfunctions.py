@@ -24,6 +24,8 @@ def projectdetails():
 
 def client_register():
     from time import sleep
+    from main import clientsbd
+    from datetime import date
     print('-=-' * 10)
     while True:
         try:
@@ -41,19 +43,52 @@ def client_register():
             break
     while True:
         try:
-            age = str(input('Digite a Idade do CLiente: ')).strip().upper()
+            day = int(input('Digite o Dia de Nascimento do CLiente: '))
         except:
             print('\033[31mErro, Tente Novamente.\033[m')
         else:
             break
-    print('Cliente Adicionado no Banco de Dados!')
-    print('-=-' * 10)
-    sleep(1)
-    return {'NOME DO CLIENTE': name, 'CPF DO CLIENTE': cpf, 'IDADE DO CLIENTE': age}
+    while True:
+        try:
+            month = int(input('Digite o Mês de Nascimento do CLiente: '))
+        except:
+            print('\033[31mErro, Tente Novamente.\033[m')
+        else:
+            break
+    while True:
+        try:
+            year = int(input('Digite o Ano de Nascimento do CLiente: '))
+        except:
+            print('\033[31mErro, Tente Novamente.\033[m')
+        else:
+            break
+    find = False
+    for client in clientsbd:
+        if client['CPF DO CLIENTE'] == cpf:
+            find = True
+            print('CPF já Cadastrado no Banco de Dados')
+            print('-=-' * 10)
+            sleep(1)
+    if not find:
+        age = calculateAge(date(year, month, day))
+        if age < 18:
+            print('O Cliente é Menor de 18 Anos, Não é Possível Cadastra-lo')
+            print('-=-' * 10)
+            sleep(1)
+        else:
+            if month < 10:
+                month_final = '0' + str(month)
+            else:
+                month_final = month
+            print('Cliente Adicionado no Banco de Dados!')
+            print('-=-' * 10)
+            sleep(1)
+            return {'NOME DO CLIENTE': name, 'CPF DO CLIENTE': cpf, 'IDADE DO CLIENTE': age, 'DATA DE NASCIMENTO': f'{day}/{month_final}/{year}'}
 
 
 def car_register():
     from time import sleep
+    from main import carsbd
     print('-=-' * 10)
     while True:
         try:
@@ -90,10 +125,18 @@ def car_register():
             print('\033[31mErro, Tente Novamente.\033[m')
         else:
             break
-    print('Carro Adicionado ao Banco de Dados!')
-    print('-=-' * 10)
-    sleep(1)
-    return {'FABRICANTE': manufactor, 'MODELO': model, 'ANO': year, 'COR': color, 'PLACA': plate}
+    find = False
+    for car in carsbd:
+        if car['PLACA'] == plate:
+            find = True
+            print('Placa Já Cadastrada no Banco de Dados')
+            print('-=-' * 10)
+            sleep(1)
+    if not find:
+        print('Carro Adicionado ao Banco de Dados!')
+        print('-=-' * 10)
+        sleep(1)
+        return {'FABRICANTE': manufactor, 'MODELO': model, 'ANO': year, 'COR': color, 'PLACA': plate}
 
 
 def client_city():
@@ -138,7 +181,6 @@ def client_city():
 
 
 def rent_register():
-    from datetime import datetime
     from main import clientsbd, carsbd, addressbd
     from time import sleep
     while True:
@@ -271,7 +313,8 @@ def erase():
     ops = ('[1] - Carro',
            '[2] - Cliente',
            '[3] - Endereço',
-           '[4] - Aluguel')
+           '[4] - Aluguel',
+           '[5] - Voltar')
     print('-=-' * 10)
     print('APAGAR DO BANCO DE DADOS'.center(30))
     for op in ops:
@@ -283,7 +326,7 @@ def erase():
         except:
             print('\033[31mErro, Tente Novamente.\033[m')
         else:
-            if q not in [1, 2, 3, 4]:
+            if q not in [1, 2, 3, 4, 5]:
                 print('\033[31mDigite uma Opção Válida.\033[m')
                 print('-=-' * 10)
                 sleep(1)
@@ -317,6 +360,10 @@ def erase():
             sleep(1)
         else:
             eraserent()
+    elif q == 5:
+        print('Retonando ao Menu Principal...')
+        print('-=-' * 10)
+        sleep(1)
 
 
 def eraseclient():
@@ -330,10 +377,10 @@ def eraseclient():
         else:
             break
     find = False
-    for data in clientsbd:
+    for counter, data in enumerate(clientsbd):
         if data['CPF DO CLIENTE'] == cpf:
             find = True
-            clientsbd.pop(data)
+            clientsbd.pop(counter)
             print('Dados do Cliente Foram Deletados do Banco de Dados')
             print('-=-' * 10)
             sleep(1)
@@ -411,6 +458,76 @@ def eraserent():
         print('Aluguel não Encontrado no Banco de Dados.')
         print('-=-' * 10)
         sleep(1)
+
+
+def especific_client():
+    from main import clientsbd
+    from time import sleep
+    if not clientsbd:
+        print('Nenhum Cliente Cadastrado no Banco de Dados')
+        print('-=-' * 10)
+        sleep(1)
+    else:
+        while True:
+            try:
+                cpf = str(input('Digite o CPF do Cliente ')).strip().upper()
+            except ValueError:
+                print('\033[31mErro, Tente Novamente\033[m')
+            else:
+                break
+        find = False
+        for client in clientsbd:
+            if client['CPF DO CLIENTE'] == cpf:
+                find = True
+                print('Dados do Carro: ')
+                print(client)
+                sleep(1)
+        if not find:
+            print('Cliente não Cadastrado no Banco de Dados')
+            print('-=-' * 10)
+            sleep(1)
+        
+
+
+def especific_car():
+    from main import carsbd
+    from time import sleep
+    if not carsbd:
+        print('Nenhum Carro Cadastrado no Banco de Dados')
+        print('-=-' * 10)
+        sleep(1)
+    else:
+        while True:
+            try:
+                plate = str(input('Digite a Placa do Carro ')).strip().upper()
+            except ValueError:
+                print('\033[31mErro, Tente Novamente\033[m')
+            else:
+                break
+        find = False
+        for car in carsbd:
+            if car['PLACA'] == plate:
+                find = True
+                print('Dados do Carro: ')
+                print(car)
+                sleep(1)
+        if not find:
+            print('Placa não Cadastrada no Banco de Dados')
+            print('-=-' * 10)
+            sleep(1)
+    
+def calculateAge(born): 
+    from datetime import date
+    today = date.today() 
+    try:  
+        birthday = born.replace(year = today.year) 
+    except ValueError:  
+        birthday = born.replace(year = today.year, 
+                  month = born.month + 1, day = 1) 
+    if birthday > today: 
+        return today.year - born.year - 1
+    else: 
+        return today.year - born.year 
 
 
 
