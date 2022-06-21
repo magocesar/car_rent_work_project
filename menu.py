@@ -1,4 +1,3 @@
-import pickle
 
 #   A função abaixo é o menu principal do programa, onde o usuário pode escolher entre as diversar funções do programa
 
