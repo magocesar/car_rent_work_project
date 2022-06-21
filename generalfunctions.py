@@ -1,4 +1,5 @@
 
+#   Apresentação dos Membros do Projeto.
 
 def projectdetails():
     from time import sleep
@@ -21,6 +22,11 @@ def projectdetails():
         sleep(.5)
     print('-=-' * 10)
 
+
+#    A função abaixo retorna dados importantes para o cadastro do cliente
+#   Se o cpf já estiver presente no banco de dados 'clientsbd', a função retorna None
+#   Se o cpf não estiver presente no Banco de Dados 'clientsbd', a função retorna um dicionario com as informaçoes do cliente
+#   para calcular a idade do cliente, é utilizada a função chamada calculateAge()
 
 def client_register():
     from time import sleep
@@ -86,6 +92,10 @@ def client_register():
             return {'NOME DO CLIENTE': name, 'CPF DO CLIENTE': cpf, 'IDADE DO CLIENTE': age, 'DATA DE NASCIMENTO': f'{day}/{month_final}/{year}'}
 
 
+#   a função abaixo retorna dados importantes para o registro de carros
+#   caso a placa já estiver cadastrada no banco de dados 'carsbd', a função retorna None
+#   caso a placa não estiver cadastrada no banco de dados 'carsbd', a função retorna um dicionario com as informações do carro
+
 def car_register():
     from time import sleep
     from main import carsbd
@@ -139,6 +149,13 @@ def car_register():
         return {'FABRICANTE': manufactor, 'MODELO': model, 'ANO': year, 'COR': color, 'PLACA': plate}
 
 
+
+#   A função abaixo retorna informações importantes em relação ao cadastro de endereços
+#   se o cpf infomado já estiver vienculado em algum endereço, a função retorna None
+#   caso contrario, a função retorna um dicionário com as informações de endereço vienculadas a um cliente
+#   caso o cpf informado não esteja cadastrado em 'clientesbd', a função pedirá para que esse cadastro seja realizado
+
+
 def client_city():
     from time import sleep
     from main import clientsbd
@@ -178,6 +195,13 @@ def client_city():
             print('Cliente não Encontrado, Cadastre Esse Cliente na Tela Inicial')
             print('-=-' * 10)
             sleep(1)
+
+
+
+#   A função retorna as informações relacionadas ao aluguel
+#   caso a placa ou o cpf não estejam cadastrados, respectivamente, em 'carsbd' e em 'clientsbd', a função pedira para que 
+#   o cadastro desse carro ou dessa pessoa seja feito
+#   caso a placa e o cpf estejam cadastrados, a função retorna um dicionario contendo as informações de aluguel
 
 
 def rent_register():
@@ -243,6 +267,9 @@ def rent_register():
                     'FABRICANTE DO CARRO': manufactor, 'MODELO DO CARRO': model, 'COR DO CARRO': color, 'PLACA DO CARRO': final_plate}
 
 
+#   A função abaixo mostra ao usuário todos os carros cadastrados no 'carsbd'
+#   Caso nenhum carro esteja cadastrado, o programa informará essa informação ao usuário
+
 def showcars():
     from main import carsbd
     from time import sleep
@@ -258,6 +285,8 @@ def showcars():
             counter += 1
         print('-=-' * 10)
 
+#   A função abaixo mostra todos os clientes cadastrados em 'clientsbd'
+#   Caso nenhum cliente esteja cadastrado, o programa informará essa informação ao usuário
 
 def showclients():
     from main import clientsbd
@@ -274,6 +303,8 @@ def showclients():
             counter += 1
         print('-=-' * 10)
 
+#   A função abaixo mostra todos os endereços cadastrados em 'addressbd'
+#   Caso nenhum endereço esteja cadastrado, o programa informará essa informação ao usuário
 
 def showcitys():
     from main import addressbd
@@ -290,6 +321,8 @@ def showcitys():
             counter += 1
         print('-=-' * 10)
 
+#   A função abaixo mostra todos os alugueis cadastrados em 'rentbd'
+#   Caso nenhum aluguel esteja cadastrado, o programa informará essa informação ao usuário
 
 def showrents():
     from main import rentbd
@@ -306,6 +339,7 @@ def showrents():
             counter += 1
         print('-=-' * 10)
 
+#   A função abaixo apresenta um submenu ao usuário, mostrando as opções de quais dados ele pode apagar do banco de dados
 
 def erase():
     from main import carsbd, clientsbd, addressbd, rentbd
@@ -365,6 +399,7 @@ def erase():
         print('-=-' * 10)
         sleep(1)
 
+# A função abaixo apaga um cliente específico do BD pelo cpf
 
 def eraseclient():
     from main import clientsbd
@@ -389,6 +424,7 @@ def eraseclient():
         print('-=-' * 10)
         sleep(1)
 
+#   A função abaixo apaga um carro específico do BD pela placa
 
 def erasecar():
     from main import carsbd
@@ -413,6 +449,7 @@ def erasecar():
         print('-=-' * 10)
         sleep(1)
 
+#   A função abaixo apaga um endereço específico do BD pelo cpf
 
 def eraseaddress():
     from main import addressbd
@@ -436,6 +473,7 @@ def eraseaddress():
         print('-=-' * 10)
         sleep(1)
 
+#   A função abaixo apaga um aluguel específico do BD pelo cpf
 
 def eraserent():
     from main import rentbd
@@ -459,6 +497,7 @@ def eraserent():
         print('-=-' * 10)
         sleep(1)
 
+# A função abaixo mostra para o usuário os dados específicos de um usuário por meio de uma busca pelo seu cpf
 
 def especific_client():
     from main import clientsbd
@@ -487,7 +526,7 @@ def especific_client():
             print('-=-' * 10)
             sleep(1)
         
-
+#   A função abaixo mostra os dados de um carro específico por meio de uma busca pela placa
 
 def especific_car():
     from main import carsbd
@@ -516,6 +555,8 @@ def especific_car():
             print('-=-' * 10)
             sleep(1)
     
+#   A função abaixo Calcula a Idade de uma pessoa a partir de uma data fornecida
+
 def calculateAge(born): 
     from datetime import date
     today = date.today() 
