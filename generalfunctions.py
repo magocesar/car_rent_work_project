@@ -571,7 +571,3 @@ def calculateAge(born):
         return today.year - born.year 
 
 
-
-
-if __name__ == '__main__':
-    pass

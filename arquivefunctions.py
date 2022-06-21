@@ -130,5 +130,3 @@ def ending_program():
     pickle.dump(rentbd, archive)
     archive.close()
 
-if __name__ == '__main__':
-    pass
