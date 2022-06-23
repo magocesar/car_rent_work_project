@@ -1,5 +1,5 @@
 
-
+#   Tenta Abrir os Arquivos .txt, se não conseguir, os arquivos .txt são criados.
 def setfiles():
     carsbd = 'carsbd.txt'
     clientsbd = 'clientsbd.txt'
@@ -50,6 +50,8 @@ def setfiles():
 
 
 
+#   As funções abaixo importam as variáveis de Dentro dos Arquivos .txt utlizando a biblioteca Pickle e os.path.
+
 def importcarsbd():
     import pickle, os.path
     carsbd = 'carsbd.txt'
@@ -89,6 +91,10 @@ def importrentbd():
     else:
         return []
 
+
+#   A função abaixo so é executada no Final do Programa, ela Apaga os Dados Presentes nos Arquivos .txt e escreve os dados das
+#   variáveis com os novos dados inseridos durante o programa.
+
 def ending_program():
     import pickle
     from main import clientsbd, carsbd, addressbd, rentbd
@@ -124,5 +130,3 @@ def ending_program():
     pickle.dump(rentbd, archive)
     archive.close()
 
-if __name__ == '__main__':
-    pass
